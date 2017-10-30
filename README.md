@@ -1,3 +1,2 @@
 # Course-project
-```ERORR```
 
