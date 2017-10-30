@@ -47,6 +47,19 @@ function trackDrag(onMove, onEnd) {
     addEventListener('mouseup', end);
 }
 
+function loadImageURL(cx, url)  {
+    var image = document.createElement('img');
+    image.addEventListener('load', function() {
+        var color = cx.fillStyle, size = cx.lineWidth;
+        cx.canvas.width = image.width;
+        cx.canvas.height = image.height;
+        cx.drawImage(image, 0, 0);
+        cx.fillStyle = color;
+        cx.strokeStyle = color;
+        cx.lineWidth = size;
+    });
+    image.src = url;
+}
 
 var controls = Object.create(null);
 
@@ -90,7 +103,16 @@ controls.brushSize = function (cx) {
     });
     return elt('span', null, 'Brush size: ', select);
 };
-
+controls.openURL = function(cx) {
+    var input = elt('input', {type: 'text'});
+    var form = elt('form', null, 'Open URL: ', input,
+        elt('button', {type: 'submit'}, 'load'));
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        loadImageURL(cx, form.querySelector('input').value);
+    });
+    return form;
+};
 
 var tools = Object.create(null);
 
