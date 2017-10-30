@@ -1,0 +1,24 @@
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    background: #cccccc url("https://www.kinogallery.com/img/wallpaper/kinogallery-wallpaper-0436179001480929899-1920x1080.jpg") no-repeat;
+    font-family: sans-serif;
+}
+
+canvas {
+    background: white;
+}
+
+#paint {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+}
+
+.placeholder {
+    position: absolute;
+    z-index: 999;
+}
