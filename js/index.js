@@ -26,7 +26,6 @@ function elt(name, attributes) {
     }
     return node;
 }
-
 function relativePos(event, element) {
     var rect = element.getBoundingClientRect();
     return {
@@ -34,7 +33,6 @@ function relativePos(event, element) {
         y: Math.floor(event.clientY - rect.top)
     };
 }
-
 function trackDrag(onMove, onEnd) {
     function end(event) {
         removeEventListener('mousemove', onMove);
@@ -46,7 +44,6 @@ function trackDrag(onMove, onEnd) {
     addEventListener('mousemove', onMove);
     addEventListener('mouseup', end);
 }
-
 function loadImageURL(cx, url)  {
     var image = document.createElement('img');
     image.addEventListener('load', function() {
@@ -113,6 +110,18 @@ controls.openURL = function(cx) {
     });
     return form;
 };
+controls.openFile = function(cx) {
+    var input = elt('input', {type: 'file'});
+    input.addEventListener('change', function() {
+        if (input.files.length === 0) return;
+        var reader = new FileReader();
+        reader.addEventListener('load', function() {
+            loadImageURL(cx, reader.result);
+        });
+        reader.readAsDataURL(input.files[0]);
+    });
+    return elt('div', null, 'Open file:', input);
+};
 
 var tools = Object.create(null);
 
@@ -138,6 +147,53 @@ tools.Erase = function (event, cx) {
 
     tools.Line(event, cx, function () {
         cx.globalCompositeOperation = 'source-over';
+    });
+};
+tools.Rectangle = function(event, cx) {
+    var leftX, rightX, topY, bottomY
+    var clientX = event.clientX,
+        clientY = event.clientY;
+
+    var placeholder = elt('div', {class: 'placeholder'});
+    var initialPos = relativePos(event, cx.canvas);
+    var xO = clientX - initialPos.x,
+        yO = clientY - initialPos.y;
+
+    trackDrag(function(event) {
+        document.body.appendChild(placeholder);
+
+        var currentPos = relativePos(event, cx.canvas);
+        var startX = initialPos.x,
+            startY = initialPos.y;
+
+
+        if (startX < currentPos.x) {
+            leftX = startX;
+            rightX = currentPos.x;
+        } else {
+            leftX = currentPos.x;
+            rightX = startX;
+        }
+
+        if (startY < currentPos.y) {
+            topY = startY;
+            bottomY = currentPos.y;
+        } else {
+            topY = currentPos.y;
+            bottomY = startY;
+        }
+
+
+        placeholder.style.background = cx.fillStyle;
+
+        placeholder.style.left = leftX + xO + 'px';
+        placeholder.style.top = topY + yO + 'px';
+        placeholder.style.width = rightX - leftX + 'px';
+        placeholder.style.height = bottomY - topY + 'px';
+    }, function() {
+        cx.fillRect(leftX, topY, rightX - leftX, bottomY - topY);
+
+        document.body.removeChild(placeholder);
     });
 };
 
