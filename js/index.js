@@ -123,6 +123,7 @@ controls.openFile = function(cx) {
     return elt('div', null, 'Open file:', input);
 };
 
+
 var tools = Object.create(null);
 
 tools.Line = function (event, cx, onEnd) {
