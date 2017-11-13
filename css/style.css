@@ -9,13 +9,17 @@ html {
 }
 
 canvas {
-    background: white;
+    background: white url("https://i.imgur.com/uVOZ1TW.jpg");
 }
 
 #paint {
     margin-left: auto;
     margin-right: auto;
     width: 1000px;
+}
+
+.toolbar{
+
 }
 
 .placeholder {

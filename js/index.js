@@ -1,12 +1,12 @@
 function createPaint(parent) {
     var canvas = elt('canvas', {width: 1000, height: 600});
     var cx = canvas.getContext('2d');
-    var toolbar = elt('div', {class: 'toolbar'});
+    var toolbar = elt('div', {span: 'toolbar'}); //<div class="toolbar">_______</div>
 
     for (var name in controls)
         toolbar.appendChild(controls[name](cx));
 
-    var panel = elt('div', {class: 'picturepanel'}, canvas);
+    var panel = elt('div', {span: 'picturepanel'}, canvas);
     parent.appendChild(elt('div', null, panel, toolbar));
 }
 
@@ -58,6 +58,39 @@ function loadImageURL(cx, url)  {
     image.src = url;
 }
 
+
+function _1turn(value) {
+    var res = elt('res', {type: 'color'});
+    value ? res = transparent : res = black;
+    return elt('span', null, 'Color: ', res);
+}//_1turn(stance) '0' or '1'
+function _2pos(val1,val2) {
+
+}//_2pos(x, y)
+function _3move(val1,val2) {
+
+}//_3move(newX, newY)
+function _4rectangle(val1,val2) {
+
+}//_4rectangle(sizeX, sizeY)
+function _5size(value) {
+
+}//_5size(someSize)
+function _6color(value) {
+    var res = elt('res', {type: 'color'});
+    res = value;
+    return elt('span', null, 'Color: ', res);
+}//_6color(codeRGB)
+function _7for(val1, val2, val3) {
+
+}//_7for(i, n, step)
+//function _8if(value) {}//_8if(case)
+function _9openURL(value) {
+
+}//_9openURL(url)
+//function _10var(name, value) {}//_10var(name, value)
+
+
 var controls = Object.create(null);
 
 controls.tool = function (cx) {
@@ -68,7 +101,7 @@ controls.tool = function (cx) {
 
     cx.canvas.addEventListener('mousedown', function (event) {
 
-        if (event.which == 1) {
+        if (event.which) {
 
             tools[select.value](event, cx);
             event.preventDefault();
@@ -100,17 +133,16 @@ controls.brushSize = function (cx) {
     });
     return elt('span', null, 'Brush size: ', select);
 };
-controls.openURL = function(cx) {
+controls.openURL = function (cx) {
     var input = elt('input', {type: 'text'});
-    var form = elt('form', null, 'Open URL: ', input,
-        elt('button', {type: 'submit'}, 'load'));
+    var form = elt('form', null, 'Open URL: ', input, elt('button', {type: 'submit'}, 'load'));
     form.addEventListener('submit', function(event) {
         event.preventDefault();
         loadImageURL(cx, form.querySelector('input').value);
     });
     return form;
 };
-controls.openFile = function(cx) {
+controls.openFile = function (cx) {
     var input = elt('input', {type: 'file'});
     input.addEventListener('change', function() {
         if (input.files.length === 0) return;
@@ -121,6 +153,15 @@ controls.openFile = function(cx) {
         reader.readAsDataURL(input.files[0]);
     });
     return elt('div', null, 'Open file:', input);
+};
+controls.commandLine = function (cx) {
+    var input = elt('input',{type: 'text'});
+    var form = elt('form',null, 'Command line:', input, elt('button', {type: 'submit'}, 'enter'));
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+       input;
+    });
+    return form;
 };
 
 
@@ -193,7 +234,6 @@ tools.Rectangle = function(event, cx) {
         placeholder.style.height = bottomY - topY + 'px';
     }, function() {
         cx.fillRect(leftX, topY, rightX - leftX, bottomY - topY);
-
         document.body.removeChild(placeholder);
     });
 };
