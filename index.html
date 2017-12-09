@@ -2,12 +2,56 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Paint</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Paint v2.0</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
-<div id="paint"></div>
-<script src="js/index.js"></script>
+    <section>
+        <div id="tools">
+            <div id="colors">
+                <button id="black" onclick="changeColor('black')"></button>
+                <button id="white" onclick="changeColor('white')"></button>
+                <button id="red" onclick="changeColor('red')"></button>
+                <button id="green" onclick="changeColor('green')"></button>
+                <button id="blue" onclick="changeColor('blue')"></button>
+                <button id="purple" onclick="changeColor('purple')"></button>
+                <button id="violet" onclick="changeColor('violet')"></button>
+                <button id="pink" onclick="changeColor('pink')"></button>
+                <button id="yellow" onclick="changeColor('yellow')"></button>
+                <button id="turquoise" onclick="changeColor('turquoise')"></button>
+
+                <button id="darkblue" onclick="changeColor('darkblue')"></button>
+                <button id="grey" onclick="changeColor('grey')"></button>
+                <button id="darkcyan" onclick="changeColor('darkcyan')"></button>
+                <button id="mediumseagreen" onclick="changeColor('mediumseagreen')"></button>
+                <button id="orange" onclick="changeColor('orange')"></button>
+                <button id="orangered" onclick="changeColor('orangered')"></button>
+                <button id="coral" onclick="changeColor('coral')"></button>
+                <button id="cornflowerblue" onclick="changeColor('cornflowerblue')"></button>
+                <button id="chocolate" onclick="changeColor('chocolate')"></button>
+                <button id="fuchsia" onclick="changeColor('fuchsia')"></button>
+            </div>
+
+            <div id="size">
+                <button id="brushSize1" onclick="changeBrushSize(5)">5px</button>
+                <button id="brushSize2" onclick="changeBrushSize(20)">20px</button>
+                <button id="brushSize3" onclick="changeBrushSize(30)">30px</button>
+                <button id="brushSize4" onclick="changeBrushSize(40)">40px</button>
+            </div>
+
+            <div id="otherTools">
+                <button id="clearCanvas" onclick="clearCanvas()">Clear</button>
+                <button id="openFile" onclick="triggerClick()">Open File</button>
+            </div>
+        </div>
+
+
+
+        <canvas id="canvas" width="1000" height="600"></canvas>
+        <input id="file" type="file" accept="image/*" />
+    </section>
+
+    <script src="js/index.js"></script>
 </body>
 </html>

@@ -1,28 +1,110 @@
-*, *:before, *:after {
-    box-sizing: inherit;
+* {margin: 0; padding: 0;}
+
+section
+{
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-html {
-    box-sizing: border-box;
-    background: #a8a8a8;
-    font-family: sans-serif;
+canvas
+{
+    display: block;
+    border: 1px solid black;
+    margin: 10px auto 0px;
+    background: url("https://i.imgur.com/uVOZ1TW.jpg");
 }
 
-canvas {
-    background: white url("https://i.imgur.com/uVOZ1TW.jpg");
+button
+{
+    outline: 0;
+    border: 0;
 }
 
-#paint {
-    margin-left: auto;
-    margin-right: auto;
+#tools
+{
     width: 1000px;
+    height: 250px;
+    margin: 0px auto;
 }
 
-.toolbar{
-
+#colors
+{
+    width: 100%;
+    height: 60px;
 }
 
-.placeholder {
-    position: absolute;
-    z-index: 999;
+#colors button
+{
+    width: 10%;
+    height: 30px;
+    float: left;
 }
+    #colors button:hover {opacity: 0.5;}
+
+#black {background: black;}
+#white {background: white; border-top: 1px solid black; /*border-bottom: 1px solid grey;*/}
+#red {background: red;}
+#green {background: green;}
+#blue {background: blue;}
+#purple {background: purple;}
+#violet {background: violet;}
+#pink {background: pink;}
+#yellow {background: yellow;}
+#turquoise {background: turquoise;}
+
+#grey {background: grey;}
+#darkblue {background: darkblue;}
+#darkcyan {background: darkcyan;}
+#mediumseagreen {background: mediumseagreen;}
+#orange {background: orange;}
+#orangered {background: orangered;}
+#coral {background: coral;}
+#cornflowerblue {background: cornflowerblue;}
+#chocolate {background: chocolate;}
+#fuchsia {background: fuchsia;}
+
+
+#size
+{
+    width: 100%;
+    height: 50px;
+    margin-top: 5px;
+}
+
+#size button
+{
+    width: 25%;
+    height: 50px;
+    background: #303030;
+    border: 1px solid white;
+    color: white;
+    //font-family: Impact;
+    cursor: pointer;
+    float: left;
+}
+    #size button:hover {opacity: 0.5;}
+
+#brushSize1 {font: 10px existence;}
+#brushSize2 {font: 20px existence;}
+#brushSize3 {font: 30px existence;}
+#brushSize4 {font: 40px existence;}
+
+#otherTools
+{
+    width: 100%;
+    height: 100px;
+}
+
+#otherTools button
+{
+    width: 100%;
+    height: 50px;
+    background: #303030;
+    border: 1px solid white;
+    color: white;
+    font: 25px Impact;
+    cursor: pointer;
+}
+    #otherTools button:hover {opacity: 0.5;}
+
+#file {opacity: 0;}
