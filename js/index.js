@@ -44,7 +44,7 @@ function triggerClick() {
 }
 
 document.getElementById('file').addEventListener('change',function (e) {
-    var temp = url.createObjectURL(e.target.files[0]);
+    var temp = URL.createObjectURL(e.target.files[0]);
     var image = new Image();
     image.src = temp;
 
