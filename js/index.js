@@ -43,11 +43,8 @@ function triggerClick() {
 }
 
 document.getElementById('file').addEventListener('change',function (e) {
-<<<<<<< HEAD
     clearCanvas();
 
-=======
->>>>>>> 791563238605d38c1f60d8fdadfde74c85ce9a96
     var temp = URL.createObjectURL(e.target.files[0]);
     var image = new Image();
     image.src = temp;
