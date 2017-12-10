@@ -1,6 +1,6 @@
 var canvas = document.getElementById('canvas');
 var context = canvas.getContext('2d');
-context.lineWidth = 20;
+context.lineWidth = 5 ;
 context.lineCap = 'round';
 var down = false;
 
@@ -34,7 +34,6 @@ function changeColor(color) {
 }
 function clearCanvas() {
     context.clearRect(0, 0, canvas.width, canvas.height);
-
 }
 function changeBrushSize(size) {
     context.lineWidth = size;
@@ -44,11 +43,36 @@ function triggerClick() {
 }
 
 document.getElementById('file').addEventListener('change',function (e) {
-    var temp = url.createObjectURL(e.target.files[0]);
+    clearCanvas();
+
+    var temp = URL.createObjectURL(e.target.files[0]);
     var image = new Image();
     image.src = temp;
 
     image.addEventListener('load', function () {
-        context.drawImage(image, 0, 0);
+        imageWidth = image.naturalWidth;
+        imageHeight = image.naturalHeight;
+        newImageWidth = imageWidth;
+        newImageHeight = imageHeight;
+        originalImageRatio = imageWidth / imageHeight;
+
+        if(newImageWidth > newImageHeight && newImageWidth > 1000)
+        {
+            newImageWidth = 1000;
+            newImageHeight = 1000 / originalImageRatio;
+        }
+        if(newImageWidth > newImageHeight && newImageHeight > 600
+            || newImageHeight > newImageWidth && newImageHeight > 600)
+        {
+            newImageHeight = 600;
+            newImageWidth = 600 * originalImageRatio;
+        }
+        if(newImageHeight === newImageWidth && newImageHeight > 600)
+        {
+            newImageHeight = 600;
+            newImageWidth = 600;
+        }
+
+        context.drawImage(image, 0, 0, newImageWidth, newImageHeight);
     })
 })
