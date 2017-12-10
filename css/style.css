@@ -4,6 +4,7 @@ section
 {
     padding-top: 20px;
     padding-bottom: 20px;
+
 }
 
 canvas
@@ -23,7 +24,7 @@ button
 #tools
 {
     width: 1000px;
-    height: 250px;
+    height: 220px;
     margin: 0px auto;
 }
 
@@ -76,7 +77,6 @@ button
     width: 25%;
     height: 50px;
     background: #303030;
-    border: 1px solid white;
     color: white;
     //font-family: Impact;
     cursor: pointer;
@@ -100,11 +100,30 @@ button
     width: 100%;
     height: 50px;
     background: #303030;
-    border: 1px solid white;
+    border-top: 2px solid white;
     color: white;
     font: 25px Impact;
     cursor: pointer;
 }
     #otherTools button:hover {opacity: 0.5;}
 
-#file {opacity: 0;}
+#file {visibility: hidden;}
+#submit {visibility: hidden;}
+
+#commandLine
+{
+    width: 1000px;
+    margin: 10px auto;
+}
+
+#commandLine button
+{
+    width: 100%;
+    height: 50px;
+    background: #303030;
+    border: 1px solid white;
+    color: white;
+    font: 25px Impact;
+    cursor: pointer;
+}
+    #commandLine button:hover {opacity: 0.5;}

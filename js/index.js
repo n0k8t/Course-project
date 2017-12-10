@@ -38,18 +38,21 @@ function clearCanvas() {
 function changeBrushSize(size) {
     context.lineWidth = size;
 }
-function triggerClick() {
+function triggerClickFile() {
     document.getElementById('file').click();
+}
+function triggerClickSubmit() {
+    document.getElementById('submit').click();
 }
 
 document.getElementById('file').addEventListener('change',function (e) {
     clearCanvas();
-
+    URL = URL || webkitURL;
     var temp = URL.createObjectURL(e.target.files[0]);
     var image = new Image();
     image.src = temp;
 
-    image.addEventListener('load', function () {
+    image.addEventListener('load', function ()  {
         imageWidth = image.naturalWidth;
         imageHeight = image.naturalHeight;
         newImageWidth = imageWidth;
@@ -61,18 +64,13 @@ document.getElementById('file').addEventListener('change',function (e) {
             newImageWidth = 1000;
             newImageHeight = 1000 / originalImageRatio;
         }
-        if(newImageWidth > newImageHeight && newImageHeight > 600
-            || newImageHeight > newImageWidth && newImageHeight > 600)
+        if(newImageHeight > 600)
         {
             newImageHeight = 600;
             newImageWidth = 600 * originalImageRatio;
         }
-        if(newImageHeight === newImageWidth && newImageHeight > 600)
-        {
-            newImageHeight = 600;
-            newImageWidth = 600;
-        }
 
         context.drawImage(image, 0, 0, newImageWidth, newImageHeight);
+        URL.revokeObjectURL(temp);
     })
-})
+});
