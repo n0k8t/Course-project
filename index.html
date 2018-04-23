@@ -10,6 +10,7 @@
     <section>
         <div id="tools">
             <div id="colors">
+    <!-- row1 -->
                 <button id="black" onclick="changeColor('black')"></button>
                 <button id="white" onclick="changeColor('white')"></button>
                 <button id="red" onclick="changeColor('red')"></button>
@@ -20,7 +21,7 @@
                 <button id="pink" onclick="changeColor('pink')"></button>
                 <button id="yellow" onclick="changeColor('yellow')"></button>
                 <button id="turquoise" onclick="changeColor('turquoise')"></button>
-
+    <!-- row2 -->
                 <button id="darkblue" onclick="changeColor('darkblue')"></button>
                 <button id="grey" onclick="changeColor('grey')"></button>
                 <button id="darkcyan" onclick="changeColor('darkcyan')"></button>
@@ -47,20 +48,18 @@
         </div>
 
 
-
         <canvas id="canvas" width="1000" height="600"></canvas>
         <div id="commandLine">
-            <form>
-                <span>Command line:</span>
-                <textarea placeholder="Здесь дожен быть ваш код" cols="128" rows="3"></textarea>
-                <button id="submitCode" onclick="triggerClickSubmit()">Отправить</button>
-                <input id="submit" type="submit" />
-            </form>
-        </div>
+            <span>Command line:</span>
 
+            <textarea id="text" placeholder="Введите help чтобы узнать об использовании" cols="128" rows="3"></textarea>
+            <input name="button" type="submit" value="Отправить" id="submitCode" onclick="runCode()">
+        </div>
         <input id="file" type="file" accept="image/*" />
     </section>
 
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="js/index.js"></script>
+
 </body>
 </html>
